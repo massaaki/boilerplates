@@ -14,9 +14,12 @@ usersRouter.post('/', async (request, response) => {
       password,
     });
 
-    delete user.password;
+    const parsedUser = {
+      name: user.name,
+      email: user.email,
+    };
 
-    return response.json(user);
+    return response.json(parsedUser);
   } catch (error) {
     return response.status(400).json({ error: error.message });
   }
