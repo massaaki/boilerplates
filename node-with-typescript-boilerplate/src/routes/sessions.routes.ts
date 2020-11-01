@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { sign } from 'jsonwebtoken';
 
 import AuthenticateUserService from '../services/AuthenticateUserService';
 
