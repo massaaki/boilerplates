@@ -4,5 +4,14 @@
   "port": "5432",
   "username": "postgres",
   "password": "secret",
-  "database": "boilerplate_database"
+  "database": "boilerplate_database",
+  "entities": [
+    "./src/models/*.ts"
+  ],
+  "migrations": [
+    "./src/database/migrations/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
 }
