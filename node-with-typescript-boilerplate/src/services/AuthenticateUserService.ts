@@ -2,6 +2,7 @@ import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import User from '../models/User';
+import authConfig from '../config/auth';
 
 interface Request {
   email: string;
@@ -29,10 +30,12 @@ class AuthenticateUserServie {
     if (!passwordMatched) {
       throw new Error('Incorrect email/password combination.');
     }
-    // use https://www.md5online.org/ to generate string
-    const token = sign({}, '44abe58705f9cbc7ec2305ae2c8754a0', {
+
+    const { secret, expiresIn } = authConfig.jwt;
+
+    const token = sign({}, secret, {
       subject: user.id,
-      expiresIn: '1d',
+      expiresIn,
     });
 
     return {
